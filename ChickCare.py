@@ -8,13 +8,12 @@ import os
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'vince'
 
-#Use FlaskForm to get input video file from user
+# Use FlaskForm to get input video file from user
 class UploadFileForm(FlaskForm):
     file = FileField("File", validators=[InputRequired()])
     submit = SubmitField("Run")
 
 # ---------------Login Form---------------
-
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -35,13 +34,11 @@ def login():
     return render_template('login.html', error='')
 
 # ---------------Dashboard---------------
-
 @app.route("/dashboard", methods=['GET', 'POST'])
 def dashboard():
     return render_template('dashboard.html')
 
 # ---------------Growth Monitoring---------------
-
 @app.route("/webcam", methods=['GET', 'POST'])
 def webcam():
     return render_template('growth.html')
@@ -60,7 +57,6 @@ def get_table_data():
     return {"data": table_data}
 
 # ---------------Feeding Schedule---------------
-# Placeholder for meal schedule data
 meal_schedule = []
 
 def add_meal(schedule, date_time, meal):
@@ -80,19 +76,16 @@ def feeding():
     return render_template('feed.html', meal_schedule=meal_schedule)
 
 # ---------------Environment---------------
-
 @app.route("/environment", methods=['GET', 'POST'])
 def environment():
     return render_template('environment.html')
 
 # ---------------Sanitization---------------
-
 @app.route("/sanitization", methods=['GET', 'POST'])
 def sanitization():
     return render_template('sanitization.html')
 
 # ---------------Image List---------------
-
 @app.route('/get_image_list')
 def get_image_list():
     # Return an empty list as local storage is not supported in Vercel
@@ -109,5 +102,6 @@ def egg_counts():
         'unhatched_egg_count': sick_count
     }
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# Comment out app.run() for Vercel deployment
+# if __name__ == '__main__':
+#     app.run(debug=True)
