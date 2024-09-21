@@ -1,18 +1,16 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "ChickCare.py",
-            "use": "@vercel/python",
-            "config": {
-                "pythonVersion": "3.10" 
-            }
-        }
+      {
+        "src": "app.py",
+        "use": "@vercel/python"
+      }
     ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "ChickCare.py"
-        }
+      {
+        "src": "/(.*)",
+        "dest": "app.py"
+      }
     ]
-}
+  }
+  
